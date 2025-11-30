@@ -39,6 +39,6 @@ void draw() {
   
 
   jf.display(); // Draw jellyfish
-    jf.move();
+  jf.move();
   
 }
