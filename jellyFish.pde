@@ -6,7 +6,7 @@ class JellyFish {
   PVector acceleration;
   float gravity = 5;
   boolean inJump = false;
-  int passTime = 500;
+  int passTime = 300;
   int saveTime;
 
   // Consturctor
