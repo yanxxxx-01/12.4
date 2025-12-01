@@ -6,7 +6,7 @@ class JellyFish {
   PVector acceleration;
   float gravity = 5;
   boolean inJump = false;
-  int passTime = 300;
+  int passTime = 350;
   int saveTime;
 
   // Consturctor
@@ -36,8 +36,6 @@ class JellyFish {
         inJump = false;
       }
 
-
-
       //in game - player actions usable
       if (keyPressed) {
 
@@ -64,6 +62,10 @@ class JellyFish {
       location.y = 350;
     } else {
       gravity = 3;
+    }
+    //if touch the top, stop up
+    if (location.y < 100){
+      location.y=100;
     }
   }
 }
