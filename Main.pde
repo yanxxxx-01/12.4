@@ -7,9 +7,10 @@ int gameState = 1;
 PVector bgLocation;
 //set class
 JellyFish jf;
+Fish fish;
 
 //Set PImage
-PImage jellyFish, background;
+PImage jellyFish, background,fishImage;
 
 //setting
 void setup() {
@@ -20,8 +21,12 @@ void setup() {
   imageMode(CENTER);
   //import images
   background = loadImage("background.png");
-  //use class
+  fishImage = loadImage("tuna.png");
+  //jellyfish class
   jf = new JellyFish();
+  //fish class
+  fish = new Fish();
+  
   //Pvector
   bgLocation = new PVector(300, 200);
 }
@@ -44,5 +49,7 @@ void draw() {
 
     jf.display(); // Draw jellyfish
     jf.move();
+    
+    fish.display();//Draw fish
   }
 }

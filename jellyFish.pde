@@ -1,4 +1,5 @@
-//JellyFish class
+//JellyFish/player class, player move control
+//what player can control in this game
 
 class JellyFish {
   PVector location;
@@ -50,7 +51,7 @@ class JellyFish {
 
           //if key 's' pressed, let falling speed faster
           if (key == 's') {
-            location.y -= velocity.y/2;
+            location.y -= velocity.y;
           }
         }
       }
