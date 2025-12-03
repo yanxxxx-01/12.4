@@ -8,12 +8,21 @@ class Fish {
   PVector acceleration;
 
   Fish() {
-    location = new PVector(200, 200);
-    velocity = new PVector(10, 10);
+    location = new PVector(500, random(100, 300));//start from out screen, random y location
+    velocity = new PVector(random(5,10), 10);
+    acceleration = new PVector(random(5), 0);
   }
 
   void display() {
     //come from right side screen
-    image(fishImage, 200, 200, 150, 100);
+    if (gameState == 1) { //game started, start display from out screen
+      image(fishImage, location.x, location.y, 150, 100);
+//move, and reset fish when it
+      location.x -= (velocity.x + acceleration.x);
+      if (location.x <-100){
+        location.y = random(100,300);
+        location.x = 500;
+      }
+    }
   }
 }
