@@ -3,7 +3,10 @@
 //Variables setup
 //Create a finite-state machine for gamestate https://www.ni.com/en/support/documentation/supplemental/16/simple-state-machine-template-documentation.html
 //0 for not started, 1 for started,2 for game overed
-int gameState = 1;
+int gameState = 0;
+
+int score = 0;
+
 PVector bgLocation;
 //set class
 JellyFish jf;
@@ -22,6 +25,7 @@ void setup() {
   //import images
   background = loadImage("background.png");
   fishImage = loadImage("tuna.png");
+  jellyFish = loadImage("jellyfish.png");
   //jellyfish class
   jf = new JellyFish();
   //fish class
@@ -32,16 +36,32 @@ void setup() {
 }
 
 void draw() {
+
   background(255);
-  //game started
-  if (gameState == 1) {
+
+  if (gameState == 0) { //menu page
+
+    image(background, 200, 200, 1200, 800);
+    image(jellyFish, 200, 200, 100, 100);
+    textSize(30);
+    text("Press 'w' to start and jump!", 20, 40);
+
+    if (key == 'w') {
+      gameState = 1;
+    }
+  }
+
+
+  if (gameState == 1) { //in game
+
+    frameRate(120) ;
 
     fill(#FFBC3E);//ground color
     noStroke();
     rect(0, 350, 400, 400);// Draw ground
 
     image(background, bgLocation.x, bgLocation.y, 600, 300);//draw background
-    image(background, bgLocation.x+300, bgLocation.y, 600, 300);//draw background
+    image(background, bgLocation.x+300, bgLocation.y, 600, 300);//draw background 2
     bgLocation.x -= 2;
     if (bgLocation.x <= 0) {
       bgLocation.x = 300;
@@ -52,24 +72,32 @@ void draw() {
 
     fish.display();//Draw fish
 
-    //collision check, using aabb, reference: https://kishimotostudios.com/articles/aabb_collision/
-   //var for collision
-    float jfLeft = jf.location.x -35;
-    float jfRight = jf.location.x + 35;
-    float jfTop = jf.location.y - 35;
-    float jfBottom = jf.location.y + 35;
-    
-    float fishLeft = fish.location.x -35;
-    float fishRight = fish.location.x + 35;
-    float fishTop = fish.location.y - 35;
-    float fishBottom = fish.location.y + 35;
-    
-     //if touched fish (collision check) , game over (state to 2)
-    if (jfLeft <= fishRight &&
+    collision(); //check collision box
+
+    //score
+    score++;
+    text("score: "+score/10, 20, 40);
+  }
+}
+
+void collision() {
+  //collision check, using aabb, reference: https://kishimotostudios.com/articles/aabb_collision/
+  //var for collision
+  float jfLeft = jf.location.x - 20;
+  float jfRight = jf.location.x + 20;
+  float jfTop = jf.location.y - 30;
+  float jfBottom = jf.location.y + 20;
+
+  float fishLeft = fish.location.x -35;
+  float fishRight = fish.location.x + 35;
+  float fishTop = fish.location.y - 35;
+  float fishBottom = fish.location.y + 35;
+
+  //if touched fish (collision check) , game over (state to 2)
+  if (jfLeft <= fishRight &&
     jfRight >= fishLeft &&
     jfTop <= fishBottom &&
     jfBottom >= fishTop) {
-      gameState = 2; 
-    }
+    gameState = 2;
   }
 }
