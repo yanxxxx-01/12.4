@@ -1,5 +1,7 @@
-//Main page of the game
+//Game 12805 Object Oriented Game
+//Created by Cindy Wang
 
+//Main page of the game
 //Variables setup
 //Create a finite-state machine for gamestate https://www.ni.com/en/support/documentation/supplemental/16/simple-state-machine-template-documentation.html
 //0 for not started, 1 for started,2 for game overed
@@ -27,10 +29,11 @@ void setup() {
   fishImage = loadImage("tuna.png");
   jellyFish = loadImage("jellyfish.png");
   jellyFish2 = loadImage("jellyfish2.png");
+  
   //jellyfish class
   jf = new JellyFish();
-  //fish class
-  //fish = new Fish();
+  
+  //create fish class by array
   fishs = new Fish[2];
   for (int i = 0; i<fishs.length; i++) {
     fishs[i] = new Fish();
