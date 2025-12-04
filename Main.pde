@@ -10,7 +10,7 @@ JellyFish jf;
 Fish fish;
 
 //Set PImage
-PImage jellyFish, background,fishImage;
+PImage jellyFish, background, fishImage;
 
 //setting
 void setup() {
@@ -26,7 +26,7 @@ void setup() {
   jf = new JellyFish();
   //fish class
   fish = new Fish();
-  
+
   //Pvector
   bgLocation = new PVector(300, 200);
 }
@@ -49,7 +49,27 @@ void draw() {
 
     jf.display(); // Draw jellyfish
     jf.move();
-    
+
     fish.display();//Draw fish
+
+    //collision check, using aabb, reference: https://kishimotostudios.com/articles/aabb_collision/
+   //var for collision
+    float jfLeft = jf.location.x -35;
+    float jfRight = jf.location.x + 35;
+    float jfTop = jf.location.y - 35;
+    float jfBottom = jf.location.y + 35;
+    
+    float fishLeft = fish.location.x -35;
+    float fishRight = fish.location.x + 35;
+    float fishTop = fish.location.y - 35;
+    float fishBottom = fish.location.y + 35;
+    
+     //if touched fish (collision check) , game over (state to 2)
+    if (jfLeft <= fishRight &&
+    jfRight >= fishLeft &&
+    jfTop <= fishBottom &&
+    jfBottom >= fishTop) {
+      gameState = 2; 
+    }
   }
 }
