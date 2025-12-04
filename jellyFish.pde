@@ -48,7 +48,6 @@ class JellyFish {
           inJump = true;
           location.y += velocity.y;
 
-
           //if key 's' pressed, let falling speed faster
           if (key == 's') {
             location.y -= velocity.y;

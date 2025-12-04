@@ -8,8 +8,8 @@ class Fish {
   PVector acceleration;
 
   Fish() {
-    location = new PVector(500, random(100, 340));//start from out screen, random y location
-    velocity = new PVector(random(5), 10);
+    location = new PVector(500, random(80, 330));//start from out screen, random y location
+    velocity = new PVector(random(1,3), 10);
     acceleration = new PVector(random(0.5), 0);
   }
 
